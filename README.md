@@ -1,7 +1,7 @@
 [![telegram](https://i.loli.net/2019/10/23/Ol9PX7io5b3hZsz.png)](https://t.me/de_GWD)
 
 
-![de_GWD](https://i.loli.net/2020/01/11/sdkcwNLE26ifhXF.png)
+![de_GWD](https://i.loli.net/2020/02/26/Sk7awvCJTLsUh8D.png)
 
 ## Server：
 
@@ -9,34 +9,39 @@
 apt install -y wget
 bash <(wget --no-check-certificate -qO- https://raw.githubusercontent.com/jacyl4/de_GWD/master/server)
 ```
-![server](https://i.loli.net/2020/01/06/kLZl8XG2KvOcaBd.png)
+![server](https://i.loli.net/2020/02/23/EZldb3zPtgKGprX.png)
 
 
 ## Client：
-amd64&arm64 Edition
+Low-end Edition (amd64&arm64)
 ```
 apt install -y wget
-bash <(wget --no-check-certificate -qO- http://xznat.seso.icu:10178/client)
+bash <(wget --no-check-certificate -qO- http://xznat.seso.icu:10290/client)
 ```
 
 
-amd64 docker nginx Edition
+General Edition (amd64)
 ```
 apt install -y wget
-bash <(wget --no-check-certificate -qO- http://xznat.seso.icu:10178/client_do)
+bash <(wget --no-check-certificate -qO- http://xznat.seso.icu:10290/client_do)
 ```
-![client](https://i.loli.net/2020/01/11/4o6fJYW2iVHvKR9.png)
+![client](https://i.loli.net/2020/02/22/5L3go4kPVSmrTID.png)
 
 
-![client_do](https://i.loli.net/2020/01/14/LnNQ8qTbSzR3FlI.png)
+![client_do](https://i.loli.net/2020/02/23/6Qb3zBlR5WoPTAe.png)
 
-amd64 nat forward Edition
+
+
+## Extension edition:
+
+Nat Server (amd64)
 ```
 apt install -y wget
 bash <(wget --no-check-certificate -qO- https://raw.githubusercontent.com/jacyl4/de_GWD/master/server_nat)
 ```
 
+Nat forward Client (amd64)
 ```
 apt install -y wget
-bash <(wget --no-check-certificate -qO- http://xznat.seso.icu:10178/client_do_fwd)
+bash <(wget --no-check-certificate -qO- http://xznat.seso.icu:10290/client_do_fwd)
 ```

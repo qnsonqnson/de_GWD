@@ -1,10 +1,11 @@
 #!/bin/bash
-ipstart=$(awk 'NR==1{print}' /var/www/html/dhcp.txt)
-ipend=$(awk 'NR==2{print}' /var/www/html/dhcp.txt)
-ipgateway=$(awk '/IPV4_ADDRESS/' /etc/pihole/setupVars.conf | cut -d = -f2 | cut -d / -f1)
+dhcpStart=$(jq -r '.address.dhcpStart' /usr/local/bin/0conf)
+dhcpEnd=$(jq -r '.address.dhcpEnd' /usr/local/bin/0conf)
+localIP=$(jq -r '.address.localIP' /usr/local/bin/0conf)
 
-sudo pihole -a enabledhcp "$ipstart" "$ipend" "$ipgateway" "24" "lan"
+sudo pihole -a enabledhcp "$dhcpStart" "$dhcpEnd" "$localIP" "24" "lan"
+/usr/local/bin/pihole_hotfix
 
-sed -i "/dhcp-option=/c\dhcp-option=6,$ipgateway,$ipgateway" /etc/dnsmasq.d/02-pihole-dhcp.conf
+jq '.address.dhcp="on"' /usr/local/bin/0conf> /tmp/0conf_temp && mv -f /tmp/0conf_temp /usr/local/bin/0conf
 
-pihole restartdns
+chmod 666 /usr/local/bin/0conf

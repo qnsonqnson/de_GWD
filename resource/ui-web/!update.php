@@ -12,7 +12,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>de_GWD - 更新</title>
+  <title>更新</title>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -104,7 +104,7 @@
         <div class="card mb-3">
           <div class="card-header">
             <i class="fas fa-archive"></i>
-            备份-恢复-更新
+            备份-恢复
           <span id="ddnscheckcf" class="badge text-success"></span>
           </div>
           <div class="card-body">
@@ -127,13 +127,34 @@
 </form>
   </div>
 
-  <div class="my-2 float-right">
-<button type="button" class="btn btn-outline-danger float-right" onclick="update()">更新</button>
-  </div>
-
           </div>
         </div>
 
+
+        <div class="card mb-3">
+          <div class="card-header">
+            <i class="fas fa-archive"></i>
+            更新
+          </div>
+          <div class="card-body">
+
+    <div class="form-row">
+      <div class="col-md-8 input-group my-1">
+        <div class="input-group-prepend w-25">
+          <span class="input-group-text justify-content-center w-100">脚本地址</span>
+        </div>
+          <input type="text" id="updateAddr" class="form-control" value="<?php echo json_decode(file_get_contents('/usr/local/bin/0conf'))->updateAddr ?>">
+          <button type="button" class="btn btn-secondary btn-sm" style="border-Radius: 0px;" onclick="updateGen()">保存</button>
+      </div>
+
+      <div class="col-md-4 my-1 float-right">
+        <button type="button" class="btn btn-outline-danger float-right" onclick="update()">运行</button>
+      </div>
+    </div>
+
+
+          </div>
+        </div>
 
         <!-- Page Content -->
       </div>
@@ -159,7 +180,7 @@ $.get('auth.php', {logout:'true'}, function(result){ window.location.href="index
 }
 
 function backup(){
-$.get('backup.php', function(result){window.location.href = "de_GWD_backup.zip"});
+$.get('backup.php', function(result){window.location.href = "/restore/0conf"});
 }
 
 function restore(){
@@ -177,7 +198,18 @@ $.ajax({
         success: function(data){
         }
       });
-alert('设置已恢复')
+alert('设置已恢复');
+window.location.reload(true);
+}
+
+function updateGen(){
+updateAddr=$('#updateAddr').val();
+$.get('updateGen.php', {updateAddr:updateAddr}, function(result){ location.reload(); });
+}
+
+function update(){
+$.get('update.php', function(result){});
+window.open('', 'popupWindow', 'width=800, height=600, scrollbars=yes');
 }
 
 window.onload = function() {
@@ -187,7 +219,7 @@ $(".sidebar").toggleClass("toggled");
   var fileName = $(this).val().split("\\").pop();
   $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
 
-  if( fileName != "de_GWD_backup.zip" ){
+  if( fileName != "0conf" ){
   alert("文件选择错误");
   }
 
